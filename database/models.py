@@ -19,6 +19,7 @@ def setup_db(app):
     db.app = app
     db.init_app(app)
 
+
 '''
 db_drop_and_create_all()
     drops the database tables and starts fresh
@@ -29,50 +30,25 @@ def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
 
+
 '''
-Drink
-a persistent drink entity, extends the base SQLAlchemy Model
+Movie
+Movies with attributes title and release date
 '''
-class Drink(db.Model):
+class Movie(db.Model):
+    __tablename__ = 'movies'
     # Autoincrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
-    # String Title
-    title = Column(String(80), unique=True)
-    # the ingredients blob - this stores a lazy json blob
-    # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    recipe =  Column(String(180), nullable=False)
+    title = Column(String(240), nullable=False)
+    release_date =  Column(String(180), nullable=False)
 
-    '''
-    short()
-        short form representation of the Drink model
-    '''
-    def short(self):
-        print(json.loads(self.recipe))
-        short_recipe = [{'color': r['color'], 'parts': r['parts']} for r in json.loads(self.recipe)]
-        return {
-            'id': self.id,
-            'title': self.title,
-            'recipe': short_recipe
-        }
-
-    '''
-    long()
-        long form representation of the Drink model
-    '''
-    def long(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'recipe': json.loads(self.recipe)
-        }
     '''
     insert()
         inserts a new model into a database
-        the model must have a unique name
-        the model must have a unique id or null id
+        the model must have a ia, name and release_date
         EXAMPLE
-            drink = Drink(title=req_title, recipe=req_recipe)
-            drink.insert()
+            movie = movie(title=req_title, release_date=req_release_date)
+            movie.insert()
     '''
     def insert(self):
         db.session.add(self)
@@ -83,8 +59,8 @@ class Drink(db.Model):
         deletes a new model into a database
         the model must exist in the database
         EXAMPLE
-            drink = Drink(title=req_title, recipe=req_recipe)
-            drink.delete()
+            movie = Movie(title=req_title, release_date=req_release_date)
+            movie.delete()
     '''
     def delete(self):
         db.session.delete(self)
@@ -95,9 +71,61 @@ class Drink(db.Model):
         updates a new model into a database
         the model must exist in the database
         EXAMPLE
-            drink = Drink.query.filter(Drink.id == id).one_or_none()
-            drink.title = 'Black Coffee'
-            drink.update()
+            movie = Movie.query.filter(Movie.id == id).one_or_none()
+            movie.title = 'Spider man'
+            movie.update()
+    '''
+    def update(self):
+        db.session.commit()
+
+    def __repr__(self):
+        return json.dumps(self.short())
+
+
+'''
+Movie
+Movies with attributes title and release date
+'''
+class Actor(db.Model):
+    __tablename__ = 'actors'
+    # Autoincrementing, unique primary key
+    id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    name = Column(String(180), nullable=False)
+    age = Column(Integer(), nullable=False)
+    gender = olumn(String(180), nullable=False)
+
+    '''
+    insert()
+        inserts a new model into a database
+        the model must have a name, age, gender
+        EXAMPLE
+            actor = Actor(name=req_name, age=req_age, gender=req_gender)
+            actor.insert()
+    '''
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    '''
+    delete()
+        deletes a new model into a database
+        the model must exist in the database
+        EXAMPLE
+            actor = Actor(tname=req_name, age=req_age, gender=req_gender)
+            actor.delete()
+    '''
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    '''
+    update()
+        updates a new model into a database
+        the model must exist in the database
+        EXAMPLE
+            actor = Actor.query.filter(Actor.id == id).one_or_none()
+            actor.name = 'James'
+            actor.update()
     '''
     def update(self):
         db.session.commit()
