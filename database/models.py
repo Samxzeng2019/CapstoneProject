@@ -40,7 +40,7 @@ class Movie(db.Model):
     # Autoincrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     title = Column(String(240), nullable=False)
-    release_date =  Column(String(180), nullable=False)
+    release_date = Column(String(180), nullable=False)
 
     '''
     insert()
@@ -56,10 +56,10 @@ class Movie(db.Model):
 
     '''
     delete()
-        deletes a new model into a database
+        deletes a model from a database
         the model must exist in the database
         EXAMPLE
-            movie = Movie(title=req_title, release_date=req_release_date)
+            movie = Movie.query.filter(Movie.id == id).one_or_none()
             movie.delete()
     '''
     def delete(self):
@@ -108,10 +108,10 @@ class Actor(db.Model):
 
     '''
     delete()
-        deletes a new model into a database
+        deletes a model from a database
         the model must exist in the database
         EXAMPLE
-            actor = Actor(tname=req_name, age=req_age, gender=req_gender)
+            actor = Actor.query.filter(Actor.id == id).one_or_none()
             actor.delete()
     '''
     def delete(self):
