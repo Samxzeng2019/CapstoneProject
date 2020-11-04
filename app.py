@@ -73,6 +73,7 @@ def add_actors(payload):
     try:
         actor.insert()
     except Exception as e:
+        actor.rollback()
         print(e)
         abort(422)
 
@@ -102,6 +103,7 @@ def add_movies(payload):
     try:
         movie.insert()
     except Exception as e:
+        movie.rollback()
         print(e)
         abort(422)
 
@@ -131,10 +133,11 @@ def update_actors(payload, actor_id):
         actor.age = body.get('age')
     if body.get('gender'):
         actor.gender = body.get('gender')
-    
+
     try:
         actor.update()
     except Exception as e:
+        actor.rollback()
         print(e)
         abort(422)
 
@@ -162,6 +165,7 @@ def update_movies(payload, movie_id):
     try:
         movie.update()
     except Exception as e:
+        movie.rollback()
         print(e)
         abort(422)
 
@@ -183,6 +187,7 @@ def delete_actors(payload, actor_id):
     try:
         actor.delete()
     except Exception as e:
+        actor.rollback()
         print(e)
         abort(422)
 
@@ -204,6 +209,7 @@ def delete_movies(payload, movie_id):
     try:
         movie.delete()
     except Exception as e:
+        movie.rollback()
         print(e)
         abort(422)
 
@@ -246,4 +252,3 @@ def resource_not_found(error):
         "error": 400,
         "message": "bad request"
     }), 400
-

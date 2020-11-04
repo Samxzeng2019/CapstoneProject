@@ -78,6 +78,9 @@ class Movie(db.Model):
     def update(self):
         db.session.commit()
 
+    def rollback(self):
+        db.session.rollback()
+
     def details(self):
         return {
             'id': self.id,
@@ -136,6 +139,9 @@ class Actor(db.Model):
     '''
     def update(self):
         db.session.commit()
+
+    def rollback(self):
+        db.session.rollback()
 
     def details(self):
         return {
