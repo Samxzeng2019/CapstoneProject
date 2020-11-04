@@ -8,6 +8,6 @@ pip install -r requirements.txt
 
 echo "start app"
 cd ~/workspace/CapstoneProject
-export FLASK_APP=api.py
+export FLASK_APP=app.py
 export FLASK_ENV=development
 flask run --reload
