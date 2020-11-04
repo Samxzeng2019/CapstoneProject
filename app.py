@@ -4,15 +4,15 @@ from flask import Flask, request, jsonify, abort
 from sqlalchemy import exc, and_
 import json
 from flask_cors import CORS
-from .database.models import db_drop_and_create_all, setup_db, Movie, Actor
-from .auth.auth import AuthError, requires_auth
+from database.models import db_drop_and_create_all, setup_db, Movie, Actor
+from auth.auth import AuthError, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
 CORS(app)
 
 # For first time runner and testing
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 
 # ROUTES
