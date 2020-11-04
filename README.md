@@ -12,41 +12,41 @@ Actors with attributes name, age and gender
 ### Roles:
 #### Casting Assistant  
 Can view actors and movies
-- get:actors
-- get:movies
+1 get:actors
+1 get:movies
 
 #### Casting Director  
 All permissions a Casting Assistant has and…
 Add or delete an actor from the database
 Modify actors or movies  
-- delete:actors	
-- get:actors
-- get:movies
-- patch:actors
-- patch:movies
-- post:movies
+1 delete:actors	
+1 get:actors
+1 get:movies
+1 patch:actors
+1 patch:movies
+1 post:movies
 
 #### Executive Producer  
 All permissions a Casting Director has and…
 Add or delete a movie from the database
-- delete:actors	
-- delete:movies	
-- get:actors
-- get:movies
-- patch:actors
-- patch:movies
-- post:actors	
-- post:movies
+1 delete:actors	
+1 delete:movies	
+1 get:actors
+1 get:movies
+1 patch:actors
+1 patch:movies
+1 post:actors	
+1 post:movies
 
 ### Permissions: 
-- delete:actors	
-- delete:movies	
-- get:actors
-- get:movies
-- patch:actors
-- patch:movies
-- post:actors	
-- post:movies
+1 delete:actors	
+1 delete:movies	
+1 get:actors
+1 get:movies
+1 patch:actors
+1 patch:movies
+1 post:actors	
+1 post:movies
 
 ### Tests and authentication:
 Test cases are included in the postman test collection with the latest jwt token included for each role to test the api. 
