@@ -13,6 +13,4 @@ export API_AUDIENCE='movies'
 
 echo "start app"
 cd ~/workspace/CapstoneProject
-export FLASK_APP=app.py
-export FLASK_ENV=development
-flask run --reload
+python test_flask.py

@@ -9,7 +9,7 @@ from auth.auth import AuthError, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # For first time runner and testing
 db_drop_and_create_all()
@@ -246,3 +246,4 @@ def resource_not_found(error):
         "error": 400,
         "message": "bad request"
     }), 400
+
