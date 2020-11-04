@@ -49,8 +49,8 @@ Add or delete a movie from the database
 - post:movies
 
 ### Tests and authentication:
-Test cases are included in the postman test collect with respective latest jwt token included for testing. 
-Run the whole collection in sequence will simulate all the errors and successes from the endpoints. 
+Test cases are included in the postman test collection with the latest jwt token included for each role to test the api. 
+Run the whole collection ```Capstone Project.postman_collection.json``` in sequence will simulate all the errors and successes from the endpoints. 
 
 If the jwt token expires upon reviewing, one can use these credentials below to authenticate and get the updated jwt respectively: 
 
@@ -64,15 +64,13 @@ Authentication credentials:
 | password       | castingassistant20@capstone.com | castingdirector30@capstone.com | executivedirector40@capstone.com |
 
 
-## API Endpoints
+### API Endpoints description:
+- POST /actors and /movies and
+- PATCH /actors/ and /movies/
+- GET /actors and /movies
+- DELETE /actors/ and /movies/
 
-### Endpoints description:
-GET /actors and /movies
-DELETE /actors/ and /movies/
-POST /actors and /movies and
-PATCH /actors/ and /movies/
-
-### POST '/actors'
+#### POST '/actors'
 - Add actors profile to the database
 - Request Arguments: Dictionary object with keys: age, gender, name
 - Response: An object with success status and actor details. 
@@ -92,7 +90,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### POST '/movies'
+#### POST '/movies'
 - Add movie profile to the database
 - Request Arguments: Dictionary object with keys: title and release_date
 - Response: An object with success status and movie details. 
@@ -111,7 +109,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### PATCH '/actors/<int:actor_id>'
+#### PATCH '/actors/<int:actor_id>'
 - Update actors profile to the database from selected actor id
 - Request Arguments: Dictionary object with keys: age, gender, name
 - Response: An object with success status and actor details. 
@@ -131,7 +129,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### PATCH '/movies/<int:movie_id>'
+#### PATCH '/movies/<int:movie_id>'
 - Update movies profile to the database from selected movie id
 - Request Arguments: Dictionary object with keys: title and release_date
 - Response: An object with success status and movies details. 
@@ -150,7 +148,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### GET '/actors'
+#### GET '/actors'
 - Query actors profile to the database
 - Request Arguments: None
 - Response: An object with success status and actor details in array. 
@@ -178,7 +176,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### GET '/movies'
+#### GET '/movies'
 - Update movies profile to the database 
 - Request Arguments: None
 - Response: An object with success status and movies details in array. 
@@ -204,7 +202,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### DELETE '/actors/<int:actor_id>'
+#### DELETE '/actors/<int:actor_id>'
 - Delete actors profile to the database from selected actor id
 - Request Arguments: None
 - Response: An object with success status and deleted actor id. 
@@ -219,7 +217,7 @@ PATCH /actors/ and /movies/
 ```
 </details>
 
-### DELETE '/movies/<int:movie_id>'
+#### DELETE '/movies/<int:movie_id>'
 - Delete movies profile to the database from selected movie id
 - Request Arguments: None
 - Response: An object with success status and deleted movie id. 

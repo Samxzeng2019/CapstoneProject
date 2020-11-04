@@ -1,0 +1,1649 @@
+{
+	"info": {
+		"_postman_id": "42f7b29a-cb60-4b4a-8b80-a52780927066",
+		"name": "Capstone Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Error testing as casting director",
+			"item": [
+				{
+					"name": "get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ddd47fcc-a538-41ee-90bc-143cd4296340",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ba29991-a545-486f-a22e-29573ff3fba4",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f3a9111-4946-43bd-8777-ceb39da72142",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"foo\": \"bar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e5613b4-ab88-4b16-a8c9-2d71f001dd62",
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2d616fb-0d39-49ed-858c-7d502a699bb7",
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Ray\",\r\n        \"age\": 44,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ad907d-9959-4537-8dde-3b13930f3bae",
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Cars\", \r\n    \"release_date\": \"20-Aug-2011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e22f21ae-6f21-4416-a98e-3c4a5ec23e6f",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Spider man\", \r\n    \"release_date\": \"20-Oct-2019\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f05d8b8-bde3-4749-a85e-8a8b675f8c65",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlzTjEyQlhIYTAwQjRKZW9xN0hQNyJ9.eyJpc3MiOiJodHRwczovL2Z1bGxzdGFja2lhbS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY4NmJkNTVlYWIyYzIwMDY5YzMzNjNmIiwiYXVkIjoibW92aWVzIiwiaWF0IjoxNjA0NDk4NzI2LCJleHAiOjE2MDQ1ODUxMjYsImF6cCI6Im9ENlFzNWNPbm1wcGVvWnNNdEYzTXB6TlhYcWN5QzFaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.SMVv2fe4BEQfH4m8TkTNmFQJ2i-TV6puFsZkn-QRLihRBqZa0AjLmV9t64j2N1QMtXB3y4if8wxegBDpc3Ml70t3FZ8NQPIXxyoBdUquCJIuTq2pb-pLqoMpa2H_mIJSU8EZqkOApl2JPt_cTJGJUWV3MNKecAl03lYs9AMUqyb9waWKjQuXAOpUXXSB4ZysVE6530uttQuXK8V_RIjVmQBQk4_lTmoYOwMBxvx1ZXnvZ0bM_oALCW0NEgvXalBbaS8mdnr3hsSNLv9WNf79skZc0VLBE243k3or0YU9uwf8kDvX_Q55k-dt4zoizvrn1pKPwiFW1-uWogw1AHzL8Q",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b66368ae-b6e4-4691-9328-8a55c921108d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "390b7acc-baf9-4151-b456-595b5996e43e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Executive Director",
+			"item": [
+				{
+					"name": "post actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9a34e015-2aa9-4a80-b70a-7ef662040798",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"James\",\r\n        \"age\": 35,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post actors 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9510ac22-d57d-4057-a204-60e3921c4f57",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"James\",\r\n        \"age\": 35,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d03c39a-5662-4703-9552-0a32db4b0f66",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Spider man\", \r\n    \"release_date\": \"20-Oct-2019\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post movie 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d1bab8c-636d-45f0-b981-685e27927ddd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Spider man\", \r\n    \"release_date\": \"20-Oct-2019\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b9cf0d9-bbe3-4330-b669-73f99bc60bb4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Cars\", \r\n    \"release_date\": \"20-Aug-2011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c85fe352-b89b-402a-95b5-3cb217c72664",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Ray\",\r\n        \"age\": 44,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7972d6e-bb7a-4fc5-a3a9-f2869b652a01",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2588e85b-bc53-43d7-b241-289b26fb8980",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4f1523e-9200-4691-9891-8635b92c3bf0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3452c253-8903-4f9f-9a1a-66ea0af0787a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlzTjEyQlhIYTAwQjRKZW9xN0hQNyJ9.eyJpc3MiOiJodHRwczovL2Z1bGxzdGFja2lhbS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY3MzJmOWMzYmY0MTAwMDcxNGFlZjcwIiwiYXVkIjoibW92aWVzIiwiaWF0IjoxNjA0NDk4ODA0LCJleHAiOjE2MDQ1ODUyMDQsImF6cCI6Im9ENlFzNWNPbm1wcGVvWnNNdEYzTXB6TlhYcWN5QzFaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphY3RvcnMiLCJwb3N0Om1vdmllcyJdfQ.t3vrOtHATHwPi1ZhxEZV2ssDWhVbpB58vb5cpB0_G7EBks3DKLUqIeZytYG8cTP19jFq80DqZdtVC1Bs-giFBoARD_-qb5gvF3T1HWj8vIlepLLWzDA7g1bpyySVtE9pigqRCQt4ymsiG9Gfe-bz6ofGsyb073w8VVZ3z8UHwuwQwZDcHiT7avXzjlbGrunCAfRjlEmRMPlFl9yVPQ7WTDMCZ77Ss8Gf1TYc2scdJvieO5Kbt_b-Vbw6JrZfYYSHmLANkkSbGfpye81U6pF9kuNDHAFNwOxlp1gqIMSSygnqtMeZlNsq2fHHCicFdBpn6lzr7lvvsJsR1yUWVAIY4Q",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "71ef0d17-5bf1-4d63-8c39-998e7030d972",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "08744125-d546-4b84-85b4-939c1f1e2d58",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65d141f1-0894-4b23-84e9-e65d601e95bf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "131a21cc-6e54-466b-877c-666a00112f57",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f09c5921-2933-4df4-9dc7-da9178822b24",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"James\",\r\n        \"age\": 35,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "072f7ad2-5d97-44ac-9b4c-d686ffca5cea",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b9cdf2e-d413-4569-8a00-c1917d505d3e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Ray\",\r\n        \"age\": 44,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "467d871d-c240-4b2f-84ee-1986c2fba8fb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('Object')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Cars\", \r\n    \"release_date\": \"20-Aug-2011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "beaba33a-4b0e-4b32-806c-ef6a714e48c5",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Spider man\", \r\n    \"release_date\": \"20-Oct-2019\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98864aed-22e0-48f2-8c26-aae58ce42b2f",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlzTjEyQlhIYTAwQjRKZW9xN0hQNyJ9.eyJpc3MiOiJodHRwczovL2Z1bGxzdGFja2lhbS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWY4NmJkNTVlYWIyYzIwMDY5YzMzNjNmIiwiYXVkIjoibW92aWVzIiwiaWF0IjoxNjA0NDk4NzI2LCJleHAiOjE2MDQ1ODUxMjYsImF6cCI6Im9ENlFzNWNPbm1wcGVvWnNNdEYzTXB6TlhYcWN5QzFaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyJdfQ.SMVv2fe4BEQfH4m8TkTNmFQJ2i-TV6puFsZkn-QRLihRBqZa0AjLmV9t64j2N1QMtXB3y4if8wxegBDpc3Ml70t3FZ8NQPIXxyoBdUquCJIuTq2pb-pLqoMpa2H_mIJSU8EZqkOApl2JPt_cTJGJUWV3MNKecAl03lYs9AMUqyb9waWKjQuXAOpUXXSB4ZysVE6530uttQuXK8V_RIjVmQBQk4_lTmoYOwMBxvx1ZXnvZ0bM_oALCW0NEgvXalBbaS8mdnr3hsSNLv9WNf79skZc0VLBE243k3or0YU9uwf8kDvX_Q55k-dt4zoizvrn1pKPwiFW1-uWogw1AHzL8Q",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "856b6540-6c61-48a3-98be-33ba8040cb81",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "988302d1-669d-4a79-bcb5-2d2898736395",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "get movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d49dd450-a235-4544-a9dd-3649a6720130",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains movies array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.movies).to.be.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6afa9d90-4589-4e06-b65c-011e3dd3b790",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"value contains actors array\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.actors).to.be.an('array')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "92e3a905-ee00-4d8f-9303-f893f304e78f",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"James\",\r\n        \"age\": 35,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70f577ee-dd38-4854-9f85-09284d75734c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de9fa1df-2c52-4ce9-a240-02d626e17ac5",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Ray\",\r\n        \"age\": 44,\r\n        \"gender\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/actors/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"actors",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5dda54f4-7ad1-438f-bcb4-fc776c630908",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Cars\", \r\n    \"release_date\": \"20-Aug-2011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0cfefc27-fbbd-4712-9f6f-eddca1103b17",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Spider man\", \r\n    \"release_date\": \"20-Oct-2019\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e879cb7-43f6-4a6b-8c4d-af460c238178",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/movies/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjlzTjEyQlhIYTAwQjRKZW9xN0hQNyJ9.eyJpc3MiOiJodHRwczovL2Z1bGxzdGFja2lhbS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWZhMGE2YjJhYzVkOTUwMDcxOTU0MzMwIiwiYXVkIjoibW92aWVzIiwiaWF0IjoxNjA0NDk4ODcyLCJleHAiOjE2MDQ1ODUyNzIsImF6cCI6Im9ENlFzNWNPbm1wcGVvWnNNdEYzTXB6TlhYcWN5QzFaIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyJdfQ.T2U4JeliMTjSiPWNKHVwCY2CUF_UmlRDScPHVJjB73vVDJWeIRcpW11OYNlRxUGimELt3FPx3d1qX7YFhVnfPQryjt94tEPebArEIGLQS3E46L-lB-eEFUufQV2GQ4GQkeBMsyUJZAXMrh-246bR4xB8iJK7gRNwTI19ejBlaV7OXmuNiA_CK3Z3chgLvv8QjBy4_tjPaPEBZR0PrFOoAjQahs1TekK14-biSbrXjF9EUvs6qpNXU4-lgj3I5mRIfVQHFHLNZPStgLH_FGk-26nDamymkt7mLm0VSWgn8bx4vWqlsGBWwBc7U3stn4VFthxgjpvQZMe_hF31xruMbw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "14a519ba-6a16-4df4-a76f-5e6f7de9a640",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d9eaa4fa-352c-4339-b3aa-04824063013f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth0 capstone movie api jwt auth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fullstackiam.us.auth0.com/authorize?audience=movies&response_type=token&client_id=oD6Qs5cOnmppeoZsMtF3MpzNXXqcyC1Z&redirect_uri=http://localhost:5000&state=STATE",
+					"protocol": "https",
+					"host": [
+						"fullstackiam",
+						"us",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "audience",
+							"value": "movies"
+						},
+						{
+							"key": "response_type",
+							"value": "token"
+						},
+						{
+							"key": "client_id",
+							"value": "oD6Qs5cOnmppeoZsMtF3MpzNXXqcyC1Z"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:5000"
+						},
+						{
+							"key": "state",
+							"value": "STATE"
+						}
+					]
+				},
+				"description": "use auth0 to get authentication\r\nand return jwt to use in the application"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b6fdb95d-717e-4348-9137-872eb22daa18",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "febe3b9a-0b1d-4dd8-a8ac-a440137e821e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a7d5d37f-d935-47b1-bd1b-b3694ae5445f",
+			"key": "host",
+			"value": "https://capstone-casting-zx.herokuapp.com"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
