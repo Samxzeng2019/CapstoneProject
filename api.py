@@ -1,10 +1,9 @@
 import os
 import sys
 from flask import Flask, request, jsonify, abort
-from sqlalchemy import exc
+from sqlalchemy import exc, and_
 import json
 from flask_cors import CORS
-
 from .database.models import db_drop_and_create_all, setup_db, Movie, Actor
 from .auth.auth import AuthError, requires_auth
 
@@ -12,7 +11,7 @@ app = Flask(__name__)
 setup_db(app)
 CORS(app)
 
-# For first time runner
+# For first time runner and testing
 # db_drop_and_create_all()
 
 
@@ -52,7 +51,7 @@ def get_movies(payload):
         movies_details.append(movie.details())
     return jsonify({
         'success': True,
-        'actors': movies_details
+        'movies': movies_details
     })
 
 # Add actor to db
@@ -63,6 +62,8 @@ def add_actors(payload):
     new_name = body.get('name')
     new_age = body.get('age')
     new_gender = body.get('gender')
+    if not (new_name and new_age and new_gender):
+        abort(400)
 
     actor = Actor(
         name=new_name,
@@ -75,7 +76,7 @@ def add_actors(payload):
         print(e)
         abort(422)
 
-    current_actor = Actor.query.filter(and_(Actor.name == new_name, Actor.age == new_age, Actor.gender == new_gender)).one_or_none()
+    current_actor = Actor.query.filter(and_(Actor.name == new_name, Actor.age == new_age, Actor.gender == new_gender)).order_by(Actor.id.desc()).first()
     if not current_actor:
         abort(422)
 
@@ -91,6 +92,8 @@ def add_movies(payload):
     body = request.get_json()
     new_title = body.get('title')
     new_release_date = body.get('release_date')
+    if not (new_title and new_release_date):
+        abort(400)
 
     movie = Movie(
         title=new_title,
@@ -102,25 +105,25 @@ def add_movies(payload):
         print(e)
         abort(422)
 
-    current_movie = Movie.query.filter(and_(Movie.title == new_title, Movie.release_date == new_release_date)).one_or_none()
-    if not current_actor:
+    current_movie = Movie.query.filter(and_(Movie.title == new_title, Movie.release_date == new_release_date)).order_by(Movie .id.desc()).first()
+    if not current_movie:
         abort(422)
 
     return jsonify({
         'success': True,
-        'actors': current_movie.details()
+        'movies': current_movie.details()
     })
 
 # Update actor attributes
 @app.route('/actors/<int:actor_id>', methods=['PATCH'])
-@requires_auth('patch:actors ')
+@requires_auth('patch:actors')
 def update_actors(payload, actor_id):
     body = request.get_json()
     if not actor_id:
-        abort(404)
+        abort(400)
     actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
     if not actor:
-        abort(404)
+        abort(422)
 
     if body.get('name'):
         actor.name = body.get('name')
@@ -128,6 +131,7 @@ def update_actors(payload, actor_id):
         actor.age = body.get('age')
     if body.get('gender'):
         actor.gender = body.get('gender')
+    
     try:
         actor.update()
     except Exception as e:
@@ -141,19 +145,20 @@ def update_actors(payload, actor_id):
 
 # Update movie attributes
 @app.route('/movies/<int:movie_id>', methods=['PATCH'])
-@requires_auth('patch:movies ')
+@requires_auth('patch:movies')
 def update_movies(payload, movie_id):
     body = request.get_json()
     if not movie_id:
         abort(404)
-    movie = Moive.query.filter(Movie.id == movie_id).one_or_none()
+    movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
     if not movie:
-        abort(404)
+        abort(422)
 
     if body.get('title'):
         movie.title = body.get('title')
     if body.get('release_date'):
         movie.release_date = body.get('release_date')
+
     try:
         movie.update()
     except Exception as e:
@@ -162,7 +167,7 @@ def update_movies(payload, movie_id):
 
     return jsonify({
         'success': True,
-        'actors': movie.details()
+        'movies': movie.details()
     })
 
 # Delete actor from db
@@ -173,7 +178,7 @@ def delete_actors(payload, actor_id):
         abort(404)
     actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
     if not actor:
-        abort(404)
+        abort(422)
 
     try:
         actor.delete()
@@ -194,7 +199,7 @@ def delete_movies(payload, movie_id):
         abort(404)
     movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
     if not movie:
-        abort(404)
+        abort(422)
 
     try:
         movie.delete()
@@ -229,7 +234,15 @@ def resource_not_found(error):
 @app.errorhandler(AuthError)
 def resource_not_found(error):
     return jsonify({
-        "success": False, 
+        "success": False,
         "error": 401,
         "message": "authentication error"
     }), 401
+
+@app.errorhandler(400)
+def resource_not_found(error):
+    return jsonify({
+        "success": False,
+        "error": 400,
+        "message": "bad request"
+    }), 400

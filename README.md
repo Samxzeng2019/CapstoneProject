@@ -9,24 +9,34 @@ The Casting Agency models a company that is responsible for creating movies and 
 Movies with attributes title and release date
 Actors with attributes name, age and gender
 
-### Endpoints:
-GET /actors and /movies
-DELETE /actors/ and /movies/
-POST /actors and /movies and
-PATCH /actors/ and /movies/
-
 ### Roles:
-- Casting Assistant  
+#### Casting Assistant  
 Can view actors and movies
+- get:actors
+- get:movies
 
-- Casting Director  
+#### Casting Director  
 All permissions a Casting Assistant has and…
 Add or delete an actor from the database
 Modify actors or movies  
+- delete:actors	
+- get:actors
+- get:movies
+- patch:actors
+- patch:movies
+- post:movies
 
-- Executive Producer  
+#### Executive Producer  
 All permissions a Casting Director has and…
 Add or delete a movie from the database
+- delete:actors	
+- delete:movies	
+- get:actors
+- get:movies
+- patch:actors
+- patch:movies
+- post:actors	
+- post:movies
 
 ### Permissions: 
 - delete:actors	
@@ -38,16 +48,28 @@ Add or delete a movie from the database
 - post:actors	
 - post:movies
 
-### Tests:
-One test for success behavior of each endpoint
-One test for error behavior of each endpoint
-At least two tests of RBAC for each role
+### Tests and authentication:
+Test cases are included in the postman test collect with respective latest jwt token included for testing. 
 
-## Authentication
-This app use jwt from Auth0 to perform the authentication for each role. 
+If the jwt token expires upon reviewing, one can use these credentials below to authenticate and get the updated jwt respectively: 
+
+Sign up url: https://fullstackiam.us.auth0.com/authorize?audience=movies&response_type=token&client_id=oD6Qs5cOnmppeoZsMtF3MpzNXXqcyC1Z&redirect_uri=https://localhost:5000&state=STATE
+
+Authentication credentials:
+
+| Authentication | Casting Assistant               | Casting Director               | Executive Director               |
+| -------------- | ------------------------------- | ------------------------------ | -------------------------------- |
+| username       | castingassistant20@capstone.com | castingdirector30@capstone.com | executivedirector40@capstone.com |
+| password       | castingassistant20@capstone.com | castingdirector30@capstone.com | executivedirector40@capstone.com |
 
 
 ## API Endpoints
+
+### Endpoints description:
+GET /actors and /movies
+DELETE /actors/ and /movies/
+POST /actors and /movies and
+PATCH /actors/ and /movies/
 
 ### GET '/categories'
 - Fetches all categories. 
