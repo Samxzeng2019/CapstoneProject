@@ -1,13 +1,13 @@
 #!/bin/bash
-echo "run coffee shop virtual env"
-. ~/workspace/venv/coffeeshop/Scripts/activate
+echo "run capstone"
+. ~/workspace/venv/capstone/Scripts/activate
 
 echo "install dependencies"
-cd ~/workspace/FSND/projects/03_coffee_shop_full_stack/starter_code/backend
+cd ~/workspace/CapstoneProject/
 pip install -r requirements.txt
 
 echo "start app"
-cd ~/workspace/FSND/projects/03_coffee_shop_full_stack/starter_code/backend/src
+cd ~/workspace/CapstoneProject
 export FLASK_APP=api.py
 export FLASK_ENV=development
 flask run --reload

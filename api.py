@@ -5,7 +5,7 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS
 
-from .database.models import db_drop_and_create_all, setup_db, Drink
+from .database.models import db_drop_and_create_all, setup_db, Movie, Actor
 from .auth.auth import AuthError, requires_auth
 
 app = Flask(__name__)
@@ -17,16 +17,11 @@ db_drop_and_create_all()
 
 
 # ROUTES
-@app.route('/drinks', methods=['GET'])
-def list_drinks():
-    drinks = Drink.query.all()
-    drinks_short = []
-    for drink in drinks:
-        drinks_short.append(drink.short())
-
+@app.route('/', methods=['GET'])
+def entry_point():
     return jsonify({
         'success': True,
-        'drinks': drinks_short
+        'content': "casting API Capstone project"
     })
 
 

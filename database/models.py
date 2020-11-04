@@ -92,7 +92,7 @@ class Actor(db.Model):
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     name = Column(String(180), nullable=False)
     age = Column(Integer(), nullable=False)
-    gender = olumn(String(180), nullable=False)
+    gender = Column(String(180), nullable=False)
 
     '''
     insert()
