@@ -28,6 +28,16 @@ Modify actors or movies
 All permissions a Casting Director has and…
 Add or delete a movie from the database
 
+### Permissions: 
+- delete:actors	
+- delete:movies	
+- get:actors
+- get:movies
+- patch:actors
+- patch:movies
+- post:actors	
+- post:movies
+
 ### Tests:
 One test for success behavior of each endpoint
 One test for error behavior of each endpoint

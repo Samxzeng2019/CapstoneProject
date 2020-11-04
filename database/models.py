@@ -78,6 +78,13 @@ class Movie(db.Model):
     def update(self):
         db.session.commit()
 
+    def details(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'release_date': self.release_date
+        }
+
     def __repr__(self):
         return json.dumps(self.short())
 
@@ -129,6 +136,14 @@ class Actor(db.Model):
     '''
     def update(self):
         db.session.commit()
+
+    def details(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'age': self.age,
+            'gender': self.gender
+        }
 
     def __repr__(self):
         return json.dumps(self.short())

@@ -12,8 +12,8 @@ app = Flask(__name__)
 setup_db(app)
 CORS(app)
 
-
-db_drop_and_create_all()
+# For first time runner
+# db_drop_and_create_all()
 
 
 # ROUTES
@@ -24,88 +24,188 @@ def entry_point():
         'content': "casting API Capstone project"
     })
 
-
-@app.route('/drinks-detail', methods=['GET'])
-@requires_auth('get:drinks-detail')
-def get_drinks_details(payload):
-    drinks = Drink.query.order_by(Drink.id).all()
-    drinks_long = []
-    for drink in drinks:
-        drinks_long.append(drink.long())
+# Get actors list
+@app.route('/actors', methods=['GET'])
+@requires_auth('get:actors')
+def get_actors(payload):
+    actors = Actor.query.order_by(Actor.id).all()
+    if not actors:
+        abort(404)
+    actors_details = []
+    for actor in actors:
+        actors_details.append(actor.details())
 
     return jsonify({
         'success': True,
-        'drinks': drinks_long
+        'actors': actors_details
     })
 
+# Get movie details
+@app.route('/movies', methods=['GET'])
+@requires_auth('get:movies')
+def get_movies(payload):
+    movies = Movie.query.order_by(Movie.id).all()
+    if not movies:
+        abort(404)
+    movies_details = []
+    for movie in movies:
+        movies_details.append(movie.details())
+    return jsonify({
+        'success': True,
+        'actors': movies_details
+    })
 
-@app.route('/drinks', methods=['POST'])
-@requires_auth('post:drinks')
-def add_drinks(payload):
+# Add actor to db
+@app.route('/actors', methods=['POST'])
+@requires_auth('post:actors')
+def add_actors(payload):
     body = request.get_json()
-    new_title = body.get('title')
-    new_recipe = body.get('recipe')
+    new_name = body.get('name')
+    new_age = body.get('age')
+    new_gender = body.get('gender')
 
-    drink = Drink(
-        title=new_title,
-        recipe=json.dumps(new_recipe)
+    actor = Actor(
+        name=new_name,
+        age=new_age,
+        gender=new_gender
     )
     try:
-        drink.insert()
+        actor.insert()
     except Exception as e:
         print(e)
         abort(422)
 
-    current_drink = Drink.query.filter_by(title=new_title).first()
+    current_actor = Actor.query.filter(and_(Actor.name == new_name, Actor.age == new_age, Actor.gender == new_gender)).one_or_none()
+    if not current_actor:
+        abort(422)
 
-    if not current_drink:
-        abort(400)
     return jsonify({
         'success': True,
-        'drinks': [current_drink.long()]
+        'actors': current_actor.details()
     })
 
-
-@app.route('/drinks/<int:drink_id>', methods=['PATCH'])
-@requires_auth('patch:drinks')
-def modify_drinks(payload, drink_id):
+# Add movie to db
+@app.route('/movies', methods=['POST'])
+@requires_auth('post:movies')
+def add_movies(payload):
     body = request.get_json()
-    if not drink_id:
-        abort(404)
-    drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
-    if body.get('title'):
-        drink.title = body.get('title')
-    if body.get('recipe'):
-        drink.recipe = body.get('recipe')
+    new_title = body.get('title')
+    new_release_date = body.get('release_date')
+
+    movie = Movie(
+        title=new_title,
+        release_date=new_release_date
+    )
     try:
-        drink.update()
+        movie.insert()
     except Exception as e:
         print(e)
         abort(422)
 
+    current_movie = Movie.query.filter(and_(Movie.title == new_title, Movie.release_date == new_release_date)).one_or_none()
+    if not current_actor:
+        abort(422)
+
     return jsonify({
         'success': True,
-        'drinks': [drink.long()]
+        'actors': current_movie.details()
     })
 
-
-@app.route('/drinks/<int:drink_id>', methods=['Delete'])
-@requires_auth('delete:drinks')
-def delete_drinks(payload, drink_id):
-    if not drink_id:
+# Update actor attributes
+@app.route('/actors/<int:actor_id>', methods=['PATCH'])
+@requires_auth('patch:actors ')
+def update_actors(payload, actor_id):
+    body = request.get_json()
+    if not actor_id:
         abort(404)
-    drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
+    actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
+    if not actor:
+        abort(404)
+
+    if body.get('name'):
+        actor.name = body.get('name')
+    if body.get('age'):
+        actor.age = body.get('age')
+    if body.get('gender'):
+        actor.gender = body.get('gender')
     try:
-        drink.delete()
+        actor.update()
     except Exception as e:
         print(e)
         abort(422)
 
     return jsonify({
         'success': True,
-        'delete': drink.id
-    })                                                              
+        'actors': actor.details()
+    })
 
+# Update movie attributes
+@app.route('/movies/<int:movie_id>', methods=['PATCH'])
+@requires_auth('patch:movies ')
+def update_movies(payload, movie_id):
+    body = request.get_json()
+    if not movie_id:
+        abort(404)
+    movie = Moive.query.filter(Movie.id == movie_id).one_or_none()
+    if not movie:
+        abort(404)
+
+    if body.get('title'):
+        movie.title = body.get('title')
+    if body.get('release_date'):
+        movie.release_date = body.get('release_date')
+    try:
+        movie.update()
+    except Exception as e:
+        print(e)
+        abort(422)
+
+    return jsonify({
+        'success': True,
+        'actors': movie.details()
+    })
+
+# Delete actor from db
+@app.route('/actors/<int:actor_id>', methods=['Delete'])
+@requires_auth('delete:actors')
+def delete_actors(payload, actor_id):
+    if not actor_id:
+        abort(404)
+    actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
+    if not actor:
+        abort(404)
+
+    try:
+        actor.delete()
+    except Exception as e:
+        print(e)
+        abort(422)
+
+    return jsonify({
+        'success': True,
+        'delete': actor.id
+    })
+
+# Delete movie from db
+@app.route('/movies/<int:movie_id>', methods=['Delete'])
+@requires_auth('delete:movies')
+def delete_movies(payload, movie_id):
+    if not movie_id:
+        abort(404)
+    movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
+    if not movie:
+        abort(404)
+
+    try:
+        movie.delete()
+    except Exception as e:
+        print(e)
+        abort(422)
+
+    return jsonify({
+        'success': True,
+        'delete': movie.id
+    })
 
 # Error Handling
 @app.errorhandler(422)
